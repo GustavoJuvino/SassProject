@@ -1,0 +1,171 @@
+//Colors!
+$background-main: #fff1da;
+$color: #313131;
+
+$color-initial: #ffe0ac;
+$color-initialD: #cebb8b;
+$color-secondary: #351d01;
+$color-border: #47381e;
+$color-third: #fae1ad;
+
+$color-text1:  #4b4b4b;
+$color-text2:  #fce1bb;
+
+
+
+//Fontes
+$f-size: 100px;
+@mixin title-large1($color, $f-size){
+    font-size: ($f-size);
+    line-height: 1;
+    font-weight: bold;
+    font-family: 'Lobster', cursive;
+    color: $color;
+}
+
+@mixin title-large2($color){
+    font-size: 40px;
+    font-family: 'Source Code Pro', monospace;
+    color: $color;
+}
+
+@mixin title3($color, $f-size){
+    font-size: $f-size;
+    font-family: 'Noto Sans Mono', monospace;
+    color: $color;
+    line-height: 2;
+    
+}
+
+@mixin customtext($color){
+    font-size: 24px;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: bold;
+    color: $color;
+}
+
+
+
+// Border!
+@mixin border-initial($color){
+    border: 10px outset $color;
+    box-sizing: border-box;
+}
+@mixin bordercustom($color){
+    border: 10px solid $color;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+//Borda Top and Bottom
+@mixin bordercustomTB($color){
+    border-top: 4px solid $color;
+    border-bottom: 4px solid $color;
+    box-sizing: border-box;
+}
+
+
+// Shadow!
+@mixin box-shadow($shadow...){
+  -webkit-box-shadow: $shadow;
+  -mox-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+
+// Button Contact Config!
+@mixin button-config{
+    font-size: 28px;
+    font-style: italic;
+    font-family: "Noto Sans Mono";
+    color: darken($color-initialD, 22%);
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 2px solid $color-initialD;
+    background: transparent;
+    display: block;
+    width: 200px;
+    padding-top:5px;
+    @include box-shadow(5px 5px 0 -2px $color-initialD,
+                        5px 5px 0 0 $color-secondary);
+    transition: .3s;
+    &:hover{
+      @include box-shadow(3px 3px 0 -2px $color-initialD,
+                          3px 3px 0 0 $color-secondary);
+      color: $color-secondary;
+    }
+}
+
+
+// Grid - MENU!
+@mixin grid-menu{
+  display:grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "table   .      img2"
+    "table   .      img2"
+    "table   .      img2"
+   ;
+  height: 100vh;
+  margin-left: 160px;
+  margin-right: 10px;
+}
+
+
+//GRID - MENU 2!
+@mixin grid-menu2{
+  padding-top: 200px;
+  display:grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "img3   .     table2"
+    "img3   .     table2"
+    "img3   .     table2"
+   ;
+   height: 100vh;
+   margin-left: 160px;
+   margin-right: 10px;
+}
+
+
+// Grid - Contact!
+@mixin grid-contact{
+  margin-top:-200px;
+  margin-left: 1000px;
+  display:grid;
+  grid-template-columns: 0.5fr 500px;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: 
+  "name1 name1"
+  "email phone"
+  "msg   msg"
+  "send info"
+  "img-5 img-5"
+  ;
+}
+
+
+
+
+
+$l-device: 1200px;
+$m-device: 860px;
+$s-device: 480px;
+
+// Media-Queries Mixin "Responsive""
+@mixin d($size) {
+    @if $size == l {
+      @media screen and (min-width: #{$l-device}) {
+        @content;
+      }
+    } @else if $size == m {
+      @media screen and (min-width: #{$m-device}) and (max-width: #{$l-device - 1}) {
+        @content;
+      }
+    } @else if $size == s {
+      @media screen and (max-width: #{$m-device - 1}) {
+        @content;
+      }
+    }
+  }
